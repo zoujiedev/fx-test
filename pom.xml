@@ -15,6 +15,7 @@
     <module>screen-snapshot</module>
     <module>lesson4</module>
     <module>lesson5</module>
+    <module>lesson6</module>
   </modules>
 
   <properties>
