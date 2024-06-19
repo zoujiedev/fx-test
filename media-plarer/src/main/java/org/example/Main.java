@@ -81,6 +81,10 @@ public class Main extends Application {
       });
 
     });
+
+    player.setOnEndOfMedia(() -> {
+      playNext();
+    });
   }
 
   private void showIndex(Stage primaryStage){
@@ -90,11 +94,7 @@ public class Main extends Application {
     Button prevButton = new Button("上一首");
     prevButton.setOnAction(event -> {
       if(player != null){
-        player.dispose();
-        curMusicIndex = curMusicIndex == 0 ? curMusicIndex : --curMusicIndex % musicList.size();
-        initMusicPlayer(musicList);
-        player.play();
-        isPlaying.set(true);
+        playPrev();
       }
     });
 
@@ -115,11 +115,7 @@ public class Main extends Application {
     Button nextButton = new Button("下一首");
     nextButton.setOnAction(event -> {
       if(player != null){
-        player.dispose();
-        curMusicIndex = (++curMusicIndex) % musicList.size();
-        initMusicPlayer(musicList);
-        player.play();
-        isPlaying.set(true);
+        playNext();
       }
     });
     Button stopButton = new Button("停止 ");
@@ -163,5 +159,30 @@ public class Main extends Application {
     primaryStage.setWidth(1000);
     primaryStage.setHeight(800);
     primaryStage.show();
+  }
+
+  private void refreshMusicPlayer(){
+    player.dispose();
+    initMusicPlayer(musicList);
+    player.play();
+    isPlaying.set(true);
+  }
+
+  private void playNext(){
+    refreshMusicNextIndex();
+    refreshMusicPlayer();
+  }
+
+  private void playPrev(){
+    refreshMusicPrevIndex();
+    refreshMusicPlayer();
+  }
+
+  private int refreshMusicNextIndex(){
+    return  curMusicIndex = (++curMusicIndex) % musicList.size();
+  }
+
+  private int refreshMusicPrevIndex(){
+    return curMusicIndex = curMusicIndex == 0 ? curMusicIndex : --curMusicIndex % musicList.size();
   }
 }
