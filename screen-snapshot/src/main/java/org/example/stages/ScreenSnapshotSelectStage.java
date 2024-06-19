@@ -173,25 +173,25 @@ public class ScreenSnapshotSelectStage implements StageView{
       saveBu.setPrefWidth(60);
       saveBu.setOnMouseClicked(saveEvent -> {
         stage.close();
-
-        Stage chooseStage = new Stage();
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("选择文件");
-        chooser.getExtensionFilters().addAll(new ExtensionFilter("图片格式",".jpg"),new ExtensionFilter("图片格式",".png"));
-        chooser.setInitialFileName("screen_snapshot_" + System.currentTimeMillis());
-        chooser.setInitialDirectory(new File("E://tmp"));
-
-        File file = chooser.showSaveDialog(chooseStage);
-        if(file == null){
-          return;
-        }
-
         try {
+          BufferedImage bufferedImage = snapshotScreen();
+
+          Stage chooseStage = new Stage();
+          FileChooser chooser = new FileChooser();
+          chooser.setTitle("选择文件");
+          chooser.getExtensionFilters().addAll(new ExtensionFilter("图片格式",".jpg"),new ExtensionFilter("图片格式",".png"));
+          chooser.setInitialFileName("screen_snapshot_" + System.currentTimeMillis());
+          chooser.setInitialDirectory(new File("E://tmp"));
+
+          File file = chooser.showSaveDialog(chooseStage);
+          if(file == null){
+            return;
+          }
+
           ExtensionFilter selectedExtensionFilter = chooser.getSelectedExtensionFilter();
           List<String> extensions = selectedExtensionFilter.getExtensions();
           String format = extensions.get(0).replace(".","");
 
-          BufferedImage bufferedImage = snapshotScreen();
           file.createNewFile();
 
           ImageIO.write(bufferedImage, format, file);
