@@ -1,0 +1,48 @@
+.root {
+  -fx-font-family: "Arial";
+  -fx-background-color: #f0f0f0;
+}
+
+.button {
+  -fx-font-size: 14px;
+  -fx-background-color: #4CAF50;
+  -fx-text-fill: white;
+  -fx-padding: 10px 20px;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+
+.button:hover {
+  -fx-background-color: #45a049;
+}
+
+.slider {
+  -fx-padding: 10px;
+}
+
+.label {
+  -fx-font-size: 12px;
+  -fx-text-fill: #666;
+}
+
+.hbox {
+  -fx-spacing: 10px;
+  -fx-padding: 10px;
+}
+
+.vbox {
+  -fx-spacing: 10px;
+  -fx-padding: 20px;
+}
+
+.progress-slider .thumb {
+  -fx-background-color: #4CAF50;
+}
+
+.progress-slider .track {
+  -fx-background-color: #ddd;
+}
+
+.progress-slider .filled-track {
+  -fx-background-color: #4CAF50;
+}
